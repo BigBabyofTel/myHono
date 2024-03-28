@@ -1,20 +1,14 @@
-import { Hono } from "hono";
+import { Hono } from 'hono';
+import { ENV } from './lib/env';
 
 const app = new Hono();
 
-app.get("/api/v1", (c) => {
-  return new Response("Good Morning!");
+app.get('/', (c) => {
+  console.log(process.env.PORT);
+  return c.json('This is a test');
 });
 
-app.get("/", (c) => {
-  return c.text("This is a test");
-});
-
-app.get("/api/v1", (c) => {
-  return c.json({
-    ok: true,
-    message: "Hello Hono!",
-  });
-});
-
-export default app;
+export default {
+  port: ENV.PORT,
+  fetch: app.fetch,
+};
