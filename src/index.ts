@@ -14,7 +14,7 @@ app.post('/', async (c) => {
   const body = await c.req.json();
 
   try {
-    const { age, name } = validateUser.parse(body);
+    const val = validateUser.parse(body);
   } catch (e) {
     if (e instanceof ZodError) {
         console.log(e.errors)
